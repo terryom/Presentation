@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Does reducing repossession risk lead to an increase in mortgage default?}{2}{0}{1}
+\beamer@sectionintoc {2}{Research Design}{8}{0}{2}
+\beamer@sectionintoc {3}{Estimation and Inference}{16}{0}{3}
+\beamer@sectionintoc {4}{Heterogeneous treatment effects}{24}{0}{4}

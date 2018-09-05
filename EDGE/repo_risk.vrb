@@ -1,0 +1,27 @@
+\frametitle{Causal forest}
+
+\begin{quote}
+Uses a random forest to reduce the curse of dimensionality in a
+k-nearest neighbour estimation problem
+\end{quote}
+
+\begin{itemize}
+\item
+  Intuition: I want to group treatment and control observations on
+  different dimensions and compare the difference in treatment effects
+  across these groups - Not obvious what variables to group on and what
+  intervals to use
+
+%\begin{verbatim}
+%<!-- - Income one of many possible variables -->
+%<!-- - Theory does not make it clear  -->
+%<!-- - Where to split high v low income -->
+%\end{verbatim}
+\item
+  You could use a kernel regression to do it but quickly run into curse
+  of dimensionality
+\item
+  Causal forest model uses random forest to decide how to weight nearby
+  observations in a kernel regression
+\end{itemize}
+

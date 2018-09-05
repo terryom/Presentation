@@ -1,0 +1,356 @@
+---
+title:  | 
+  | The Impact of Repossession Risk on Mortgage Default
+  | 
+author: |
+  | Terry O'Malley
+  |
+  | University College Dublin 
+date:   | 
+  | `r format(Sys.Date(), "%B %d, %Y")`
+  | EDGE 2018
+classoption: "aspectratio=169"
+output:
+  beamer_presentation:
+    includes:
+      in_header: schtyle.sty
+    keep_tex: yes
+---
+
+
+# Does reducing repossession risk lead to an increase in mortgage default?
+
+## Repossession Risk and Mortgage Default
+
++ Moral hazard 
+
+<!-- + Policy question: existence and magnitude -->
+
++ Importance of the household default cost parameter
+    - Financial stability: leverage choice (Bailey et al, 2018) 
+    - Ex-post debt renegotiation: HAMP in the US, similar programmes elsewhere 
+    - Policy: foreclosure moratoria 
+    
++ Strategic default
+    - Are borrowers strategic when it comes to default? 
+    - Implications for mortgage contract design 
+    
+
+## This paper 
+
++ Exploit *quasi-experimental variation in Irish repossession law* to test
+whether repossession risk matters for mortgage default. 
+
++ Analyse whether *treated loans defaulted at a higher rate* after a legal ruling striking down law.
+
++ Analyse heterogeneous treatment effects to answer: is excess default strategic? 
+    - Distressed borrower welfare enhanced? 
+    - Or just strategic borrowers getting the benefit? 
+
+## Preview of results 
+
+- Methodology 
+      - Cut-off date in a legal judgment: law does not apply to originated before cut-off
+      - Two cohorts originated either side of the cut-off date 
+      - Difference-in-differences research design comparing pre and post default rates 
+  
+- Removing repossession risk lead to an immediate increase in default rates.
+      - 1-2 pp increase in cumulative default probability in one year after event.
+      - ~40% increase over estimated counterfactual.
+      
+- Treatment effect highest for loans with 
+      - lowest and negative home equity
+      - previous missed payments
+      
+
+
+## What does economic theory tell us? 
+
++ Reducing the cost associated with mortgage default should increase the demand for it.
+      - Home repossession large cost of default 
+      - Default may not be optimal 
+      
++ Social theory:
+      - Mortgage default isn't a rational cost-benefit calculation
+      - Driven by emotion, not ameniable to economic analysis
+      - Reduced default costs should not matter
+      
++ Not exactly clear from economic theory who excess defaulters are
+      - Strategic default: inframarginal borrowers default 
+      
+
+
+## Economic evidence
+
+
++ Public finance, health: moral hazard exists 
+      - Einav & Finkelstein (2018): "compelling evidence that moral hazard in health insurance exists"
+      
++ Mortgage market evidence more mixed
+      - Mayer et al (2014): mortgage renegotiation programme led to increased default rates in U.S.
+      - Ganong & Noel (2017): **Low** moral-hazard cost because mortgage default primarily driven by affordability
+      - Agarwal et al (2017): No moral hazard effect from HAMP, a well-designed intervention
+      - Collins & Urban (2016): No default response to New Jersey foreclosure moratorium
+      
+# Research Design
+
+## Ireland: 2011 Court Judgment
+
++ 2009 Land Act 
+      + December 2009: Land and Conveyancing Law Reform Act replaces 1964 law.
+
++ July 2011: Justice Dunne rules that 2009 Act **failed to preserve relevant parts of the older law**
+
++ After July 2011, mortgages originated before 1st December 2009 *cannot be repossessed* if borrower defaults.
+       + 2 years passed before law fixed
+      
+## A natural experiment 
+
++ For loans originated around   *1st December 2009*: repossession risk quasi-randomly removed 1.5 years later in July 2011.
+      + Treatment group originated before the cut-off
+      + Control group after
+
++ Plausibly exogeneous: treatment group did not rush to get mortgages before the new law
+      + Minor change to conveyancing law, routine procedure 
+      + Legal ruling *not anticipated*
+      
++ Difference-in-difference: use outcome of control group to estimate missing counterfactual for treatment group.      
+      
+
+##
+
+\includegraphics[width = 0.45\linewidth]{july26.pdf}
+\includegraphics[width = 0.45\linewidth]{loophole.pdf}
+
+## Data
+
+- Central Bank of Ireland Loan-Level Data
+
+- Collected from regulated banks for stress-testing, 2010-present
+
+- Quarterly panel data with information on 
+      - *current* loan characteristics
+      - *origination* borrower characteristics 
+      
+      
+## Paper data set 
+
+- Take loans originated 180 days before and after the cut-off date in legal ruling: 1st December 2009
+      - Pre cut-off are the treatment group
+        
+- Q3/2010 - Q2/2012        
+
+- Loans are matched by an estimated propensity score
+      - Future treatment group status as a function of first period covariates 
+      - Matching without replacement to eliminate observations without counterpart
+
+- 80,732 observations. 7,913 loans. Half treatment, half control.
+
+## Mortgage default 
+
+\[
+\textup{default}{}_{it}=P(90\textup{DPD}_{it}=1\,|\,90\textup{DPD}_{is}=0\textup{\,for all }s<t)
+\]
+
++ Loan $i$ is in default at time $t$ if it has accumlated greater than 90 days worth of missed payments.
+
++ Standard Basel definition of loan default 
+
++ Less noisy than using surrogate measures such as 30 days past due etc. 
+
++ Loan drops out of data once in default 
+      + Theoretical interest is in the *transition* to default and not the state of being in default 
+
+
+## Difference in means 
+
+Stock (left) v transition (right)
+\includegraphics[width=\linewidth]{empirical_wide}
+
+
+# Estimation and Inference 
+
+## Estimating Equation 
+
+\begin{equation}
+\textup{{default}}_{ibfgrt}=\alpha+\beta^{DD}(\textup{{Treatment}}_{g}\times\textup{Post}_{t})+X_{it} +\phi_{r,t}+\tau_{b,f,t}+\epsilon_{ibfgrt}
+\end{equation}
+
+where:
+
+- $treatment_i$ is an indicator for whether the loan was originated before the cut-off. 
+
+- $Post_t$ is an indicator for whether the observation is after the ruling (July 2011).
+
+- $\beta_{DD}$ is treatment effect of interest
+
+- $X_{it}$ is a matrix of control variables including treatment status, interest rate, loan-to-value ratio, borrower income, borrower age
+
+-  $\phi_{r,t}+\tau_{b,f,t}$ are region-time and interest rate type - time fixed effects 
+
+- Identification: within-group changes between treatment and control groups over time 
+      - Conditional on controls and fixed effects, treament $\beta^{DD}$ is an unbiased estimator of treatment effect
+      
+- Inference: errors clustered at loan level.
+
+## Results 
+
+\centering\input{poster_regs}
+
+
+## Eventy study
+
+- Interact treatment dummy with time fixed effects 
+
+\footnotesize\centering\input{est_estud1.tex} 
+
+
+## Tricky inference
+
+- Issue: quasi-randomisation at group level 
+
+- Two groups: originated pre and post 1st December 2009
+
+- Errors correlated within group? Effective sample size of 2
+
+$\implies$ Permutation inference 
+
+
+## Permutation Inference 
+
+- Permutation inference aka randomisation inference 
+
+- Fisher (1936); Computing power has seen resurgence (Efron & Hastie, 2017)
+
+- "Permute" the treatment vector many times and calculate your test statistic 
+      - Effect of "true" treatment vector should lie in the tails 
+      - Easy to calculate an exact $p$-value to test null 
+      
+- Intuition: if there is nothing going on, your test statistic should be similar to a vector of random treatments
+
+
+## How to permute a natural experiment? 
+
+- This natural experiment: treatment based on cut-off date 
+
+- Idea: permute the cut-off date and perform the analysis exactly as before 
+      - Extract data, match with PSM, event study regression 
+
+- 1000 random dates; *save* treatment effects 
+
+- Compare "true" treatment effect to the distribution of permuted ones
+      - Similar to Ganong and Jaeger (2017) on Regression Kink Design 
+
+- Estimated difference could just be a fluke due to the particular cut-off date
+      - So try *many* cut-off dates
+
+## 
+
+\centering\includegraphics[width = 0.8\linewidth]{joy_with_p}
+
+# Heterogeneous treatment effects 
+
+## Beyond the avearage treatment effect 
+
+- Average treatment effect is interesting
+
+- Is the effect driven by strategic borrowers? Or distressed borrowers?
+
+- Welfare implications of ex-post mortgage contract policies 
+
+
+## Triple difference regression
+
+- Effect mostly driven by households carrying a missed payment
+
+- Much smaller effect for fully-peforming households
+
+\tiny\centering\input{est_tab_arrears1.tex} 
+
+
+## Causal forest 
+
+> Uses a random forest to reduce the curse of dimensionality in a k-nearest neighbour estimation problem 
+
++ Intuition: I want to group treatment and control observations on different dimensions and compare the difference in treatment effects across these groups 
+        - Not obvious what variables to group on and what intervals to use
+        <!-- - Low income borrowers grouped together: what is the treatment effect?  -->
+        <!-- - High income borrowers group together: is the treatment effect lower?  -->
+
+
+        <!-- - Income one of many possible variables -->
+        <!-- - Theory does not make it clear  -->
+        <!-- - Where to split high v low income -->
+
++ You could use a kernel regression to do it but quickly run into curse of dimensionality
+                <!-- + Curse of dimensionality: how to group treatment and control units together in 4,5,6,etc dimensions  -->
+                
++ Causal forest model uses random forest to decide how to weight nearby observations in a kernel regression                
+
+## Treatment effect function
+
+\begin{equation}
+Y_{i}=(Y_{i1}-Y_{i0})=\tau(X_{i0},\,Z_{i1})+\epsilon_{i}\label{eq:tau}
+\end{equation}
+
+- Loan-level treatment effect is the difference in potential outcomes 
+- Model how each individuals treatment effect varies according to covarites 
+- 2 matrices: $X$ and $Z$ 
+- Panel data collapsed: endline Y as a function of pre-treatment covariates
+
+
+## Predicted treatment effect of loan-to-value ratio
+
+Highly leveraged borrowers have lowest opportunity cost of defaulting 
+
+\centering\includegraphics[width = 0.7\linewidth]{ltv_te}
+
+
+## How are covariates associated with individual treatment effect? 
+
+\centering
+\begin{tabular}{@{\extracolsep{5pt}}lc}
+ & \tabularnewline
+ & \tabularnewline
+\hline 
+ & \tabularnewline
+ & Treatment effect\tabularnewline
+\hline & \tabularnewline
+LTV  & 0.0002$^{***}$ \tabularnewline
+ & (0.00001) \tabularnewline
+log(Income)  & $-$0.002$^{*}$ \tabularnewline
+ & (0.001) \tabularnewline
+Interest rate  & 0.002$^{**}$ \tabularnewline
+ & (0.001) \tabularnewline
+Year of birth  & $-$0.00001 \tabularnewline
+ & (0.00004) \tabularnewline
+Constant  & 0.027 \tabularnewline
+ & (0.088) \tabularnewline
+\hline & \tabularnewline
+Observations  & 12,298 \tabularnewline
+\hline\hline & \tabularnewline
+ & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01}\tabularnewline
+\end{tabular}
+
+
+
+## Conclusion
+
+- Quasi-experimental evidence of moral hazard in the mortgage market 
+
+- Between 1 and 2 pp one-year difference in default probability 
+
+- Doesn't look like *strategic default*
+      - Excess defaults made up mostly of loans in arrears 
+      - Causal forest reveals lower income, higher leverage, higher interest rate associated with high treatement effect 
+      - Marginal not inframarginal borrowers default after the ruling
+      
+- Policy implications: reducing repossession risk as a social insurance programme?
+      - Of course other costs: transfers default cost from borrower to bank
+      - Other GE effects: risk pricing, banking losses
+
+
+
+
+      
+     
