@@ -1,0 +1,200 @@
+---
+title:  | 
+  | The Impact of Repossession Risk on Mortgage Defaut 
+  | 
+author: |
+  |	 Terry O'Malley
+  | Central Bank of Ireland
+  | University College Dublin 
+  |
+  | AREUEA ASSA 2019 
+  
+date: '`r format(as.Date("2019-01-05"), "%B %Y")`'
+
+classoption: "aspectratio=169"
+output:
+  beamer_presentation:
+    includes:
+      in_header: my_style.sty
+    keep_tex: yes
+
+---
+
+## This paper 
+
+- Use diff-in-diff variation to estimate treatment effect of removing repossession risk on mortgage default 
+      - Unexpected Irish legal ruling 
+
+
+- Theoretical object of interest: moral hazard effect of reduced repossession risk 
+      - Important for mortgage market design  (Piskorski and Seru, 2018) 
+      - Foreclosure moratoria popular during Great Depression and Recession: what do we know about the moral hazard effects? (Mayer et al, 2014)
+
+
+- 0.3 pp increase in quarterly default rates for a sample of Irish mortgages 
+      - 30-40% relative increase over estimated counterfactual 
+
+
+
+## 30 seconds on the Irish Mortgage Market 
+
+- Mostly standard contract features 
+
+- Recourse: if house sold, any residual balance is still owed
+    - Bank cannot garnish salaries or assets without very specific/rare legal order
+
+- Interest rate types more similar to UK than US
+    - Fixed rates: 1-10 years, then reset 
+    - Variable rate: interest rate decided by bank policy (not necessarily market rate)
+    - U.S-style ARMs: extinct today and don't feature in my sample because Irish banks funding costs far exceeded market interest rates during crisis
+
+## 2011: The Dunne Judgment Removes Collateral Enforcement Rights
+
+- 25th July 2011: unexpected legal ruling in Irish High Court 
+
+- Justice Dunne: Error in repossession law  and it is void
+
+    - Banks cannot use the law of the land to enforce collateral ...
+
+- New law introduced on 1st December 2009 to update old legislation regarding transfer of property deeds   
+    - Failed to preserve the relevant parts of the old law 
+    - Repealed but did not replace it 
+
+## The Natural Experiment 
+
+- Key feature of the ruling: loans originated *after* the introduction of the flawed law were still covered by repossession law
+
+- Starting July 2011, loans issued before 1st December 2009 could not be lawfully repossessed 
+
+- How did nobody realise the new law was inadequate? 
+      - Inattention: banks rushing to issue foreclosure notices to combat rising defaults (Robinson, 2018)
+
+
+## 
+
+\includegraphics[width=0.49\linewidth]{loophole.pdf}
+\includegraphics[width=0.49\linewidth]{july26.pdf}
+
+
+
+## Research Design 
+
+- Difference-in-difference variation created by the Dunne judgment 
+
+- Diff 1: Pre-Post July 2011 
+
+- Diff 2: Loans issued pre-post 1st December 2009 
+
+
+$\implies$ For loans in a narrow window around 1st December 2009, repossession risk is quasi-randomly removed unexpectedly on 25th July 2011
+
+
+## Data 
+
+- Loan-level data on Irish mortgages issued 180-days either side of the cutoff: 1st December 2009
+
+- Quarterly panel data on default, balance, LTV, interest rate, rate type from Q3 2010- Q3 2012
+    - origination information on income, age, vintage 
+    
+- Loans for home purchase (no equity release) 
+
+- Treatment group: issued before 1st December 2009 
+
+- Match loans across treatment control group on first period borrower age, location, income, interest rate, LTV-at-origination 
+    - Drop unmatched observations 
+    
+- Roughly 8000 loans, half of which receive treatment in July 2011 
+
+## Default rates spiked for treated loans after Judgment 
+
+\centering\includegraphics[width=0.75\linewidth]{transitions.pdf}
+
+## Model 
+
+
+$$ P(\textup{{default}}_{ijbgrt})=\alpha+\beta^{DD}(\textup{{Treatment}}_{j}\times\textup{Post}_{t})+\mathbf{X}_{it}^{\prime}\Psi+\phi_{rt}+\tau_{bgt}+\epsilon_{ijbgrt}$$
+
+- Adjust for potential confounders:
+    - Interest rates, interest rate types, 
+    - LTV and negative equity
+    - Borrower region and age
+    - Vintage time trends
+
+
+## 
+
+\centering\input{poster_regs.tex}
+
+## Event study coefficients 
+
+\centering\includegraphics[width=\linewidth]{es_graph.pdf}
+
+## Permutation Inference 
+
+- Randomly choose other cut-off dates and repeat (X1000)
+
+\centering\includegraphics[width=\linewidth]{ri_plot.pdf}
+
+## Mechanisms 
+
+- Liquidity or strategic default? 
+
+- Depending on which, policy implications are different 
+
+- Incomplete insurance markets or imperfect mortgage contracts, liquidity default means high marginal utility borrowers getting payment relief 
+
+- Strategic default: home no longer a good investment, can't even be repossessed so stop paying (pure moral hazard)
+
+
+## Mechanisms  
+
+- For a small sample (1347) loans, I can measure borrower's liquid account balance in 6-months prior to event 
+    - within same bank 
+    
+- 2 triple-diff regressions
+      1. Terciles of liquid wealth distribution
+      2. Terciles of loan-to-value distribution 
+
+## 
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+      & (1)   & (2) \\
+\midrule
+Treated $\times$ Post & -0.0046 & 0.015 \\
+      & (0.372) & (0.005) \\
+Treated $\times$ Post $\times$ LTV T2 & -0.0115 &  \\
+      & (0.119) &  \\
+Treated $\times$ Post $\times$ LTV T3 & 0.0198 &  \\
+      & (0.008) &  \\
+Treated $\times$ Post $\times$ Account Balance T2 &       & -0.0102 \\
+      &       & (0.171) \\
+Treated $\times$ Post $\times$ Account Balance T3 &       & -0.0166 \\
+      &       & (0.026) \\
+      \midrule
+ {\it Obs}     & 7998  & 7998 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+## Conclusion 
+
+- Estimated treatment effect of removing repossession risk on default: 0.3pp increase in quarterly default rate 
+
+- Liquidity or moral hazard? Seems to be both 
+    -  Effect driven by low liquid wealth borrowers 
+    - Also by highest LTV borrowers 
+
+
+
+
+
+
+
+
+
+
+
+

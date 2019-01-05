@@ -1,0 +1,45 @@
+slide 6: Whatdoeseconomictheorytellus?
+
+- is this a measure of social costs then?
+- If there are no social costs, are there marginal borrowers?
+- Large social costs, only the most desperate will default
+- None, anybody will default. 
+- Maybe that's interesting and you could write a tiny model just to clarify. 
+   - Sounds like something you could lift from public finance literature. 
+
+
+Slide 29:
+treatment effect function
+- maybe this should be one of the first slides on HTE
+
+- Set it up as: oh, we care about treatment effects and knowing how they 
+vary will help us tease out whether this is strategic default
+-- I think the strategic default: marginal v inframarginal defaulters is nice 
+-- Therefore the causal forest is really cool way of estimating it. 
+- Curse of dimensionality etc
+- People's heads might be fried at this stage.
+
+- Could show the distribution of ITE as ssuggested by PAtrick B. 
+
+
+Other things:
+- it might be worthwhile to do a tikz graph about origination, ruling, treatment, control etc
+- see paul goldsmith's github page
+
+
+If people start giving you hassle about the changing economy, you can push back and say: hey, 
+these guys are observationally similar. Of course, that's not the probem but then you say: look at my
+pre-trends
+
+
+Slide 17: Estimating Equation
+- not great, be more specific
+
+Slide 19: Eventystudy
+- replace with graph?
+
+
+Slide 20: tricky leverage. 
+- do you even understand this? Maube read Ganong and Jaeger again
+- the point you are trying to get around is that the law of large numbers doesn't hold 
+with two treatment units
